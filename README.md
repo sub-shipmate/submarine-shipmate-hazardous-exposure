@@ -2,17 +2,29 @@
 
 Historical research and private reconstruction tools for U.S. **submarine and submarine-tender shipmates**.
 
+## Start Here
+
+**Were you a U.S. submarine or submarine-tender shipmate?**
+
+Use the **[Shipmate Private Reconstruction Form](https://sub-shipmate.github.io/submarine-shipmate-hazardous-exposure/forms/Submarine_Shipmate_Private_Reconstruction_Form.html)** to work through your service assignment, compartments and shops, equipment, maintenance tasks, materials and chemicals, possible exposure routes, incidents, symptoms, witnesses, and potential record sources.
+
+The form is a **private reconstruction tool**. Completing it does not submit your information to this public repository.
+
+- **[Open the Shipmate Private Reconstruction Form](https://sub-shipmate.github.io/submarine-shipmate-hazardous-exposure/forms/Submarine_Shipmate_Private_Reconstruction_Form.html)**
+- **[Browse the Public Research Archive](https://sub-shipmate.github.io/submarine-shipmate-hazardous-exposure/references/)**
+- **[Catalog-Only / Unverified Download References](https://sub-shipmate.github.io/submarine-shipmate-hazardous-exposure/references/catalog-only/)**
+
 The repository name recommended for the new public account is:
 
 `submarine-shipmate-hazardous-exposure`
 
 “Hazardous exposure” describes the overall research archive. **Reconstruction** is retained for the private form and research method because the form reconstructs service, compartments/shops, equipment, tasks, materials, routes, controls, incidents, symptoms and record leads.
 
-## Open the private reconstruction form
+## Shipmate Private Reconstruction Form
 
 When GitHub Pages is enabled for the new repository, use:
 
-`https://NEW-ACCOUNT.github.io/submarine-shipmate-hazardous-exposure/forms/Submarine_Shipmate_Private_Reconstruction_Form.html`
+`https://sub-shipmate.github.io/submarine-shipmate-hazardous-exposure/forms/Submarine_Shipmate_Private_Reconstruction_Form.html`
 
 The form is for service aboard a **submarine, submarine tender, or both**. USS Guardfish is not referenced in the general form; it remains a separate historical example under `examples/`.
 
