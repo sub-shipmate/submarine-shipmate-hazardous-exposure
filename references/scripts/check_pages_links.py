@@ -4,6 +4,9 @@ import re, sys
 from urllib.parse import urlparse, unquote
 
 ROOT=Path(__file__).resolve().parents[2]
+import subprocess
+subprocess.run([sys.executable, str(ROOT/"references/scripts/generate_public_archive_indexes.py"), "--check"], check=True)
+subprocess.run([sys.executable, str(ROOT/"references/scripts/validate_research_csvs.py")], check=True)
 BASE="/submarine-shipmate-hazardous-exposure"
 HOST="sub-shipmate.github.io"
 bad=[]
@@ -43,12 +46,7 @@ for p in markdown_files:
 
 # CSV URL validation for public research catalogs.
 import csv
-csv_files = [
-    ROOT / "references/catalog-only/reference-links.csv",
-    ROOT / "references/research-leads.csv",
-    ROOT / "references/materials-msds-candidates.csv",
-    ROOT / "references/material-sheet-downloads.csv",
-]
+csv_files = sorted((ROOT / "references").rglob("*.csv"))
 csv_urls_checked = 0
 for cp in csv_files:
     if not cp.exists():
