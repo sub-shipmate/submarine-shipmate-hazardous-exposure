@@ -12,10 +12,11 @@ CATS=[
 ("submarine-atmosphere","Submarine Atmosphere"),("submarine-systems","Submarine Systems"),
 ("tender-ship-repair","Tender / Ship Repair")]
 STYLE='body{font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;max-width:1100px;margin:0 auto;padding:24px;line-height:1.55}header{border-bottom:1px solid #8885;margin-bottom:24px;padding-bottom:16px}nav a{margin-right:18px}.card{border:1px solid #8886;border-radius:10px;padding:18px;margin:16px 0}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}a{overflow-wrap:anywhere}small,.muted{opacity:.75}.warning{border-left:5px solid #888;padding-left:14px}ul{padding-left:24px}'
+ANALYTICS='''<!-- Cloudflare Web Analytics --><script type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "7646b5697782467286d83a3a2e828ade"}'></script><!-- End Cloudflare Web Analytics -->'''
 def nav():
     return f'<nav><a href="{BASE}/index.html">Home</a><a href="{BASE}/forms/Submarine_Shipmate_Private_Reconstruction_Form.html">Private Reconstruction Form</a><a href="{BASE}/references/index.html">Research Library</a><a href="{BASE}/references/public-archive/index.html">Public Archive</a><a href="{BASE}/references/catalog-only/index.html">Catalog-Only</a></nav>'
 def shell(title,body):
-    return f'<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{html.escape(title)}</title><style>{STYLE}</style></head><body><header><h1>{html.escape(title)}</h1>{nav()}</header>{body}<footer><hr><p class="muted"><strong>Public Reference — Information Only.</strong> Inclusion does not by itself establish individual exposure, dose, diagnosis, causation, or VA service connection.</p></footer></body></html>'
+    return f'<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{html.escape(title)}</title><style>{STYLE}</style></head><body><header><h1>{html.escape(title)}</h1>{nav()}</header>{body}<footer><hr><p class="muted"><strong>Public Reference — Information Only.</strong> Inclusion does not by itself establish individual exposure, dose, diagnosis, causation, or VA service connection.</p></footer>{ANALYTICS}</body></html>'
 with MANIFEST.open(newline="",encoding="utf-8-sig") as f: rows=list(csv.DictReader(f))
 files=[r for r in rows if (r.get("archive_path") or "").strip()]
 by={k:[] for k,_ in CATS}
