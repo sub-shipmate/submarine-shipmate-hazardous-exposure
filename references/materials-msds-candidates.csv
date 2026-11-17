@@ -1,0 +1,21 @@
+category,candidate_material_or_family,period_relevance,evidence_target,status,notes
+submarine atmosphere,"monoethanolamine (MEA), including chelated aqueous MEA",MIL-P-24082C (1981; amended 1982) documents MEA in Mark IIIB submarine CO2 removal plant,period specification + product/manufacturer MSDS,period-relevant,Not proof of use aboard every submarine.
+lubricants,2190 TEP / MIL-L-17331 lubricating oil,1981 Navy maintenance documentation lists MIL-L-17331 / Navy symbol 2190,period specification + manufacturer MSDS by NSN/product,period-relevant,Formulation may vary by manufacturer/revision.
+hydraulics,fire-resistant shipboard hydraulic fluids (MIL-H/PRF-19457 family),military specification family has period revisions,period specification + manufacturer MSDS,candidate,Establish exact system/product.
+diesel/engine,diesel fuel and MIL-L-9000 lubricating-oil family,1981 Navy maintenance documentation lists MIL-L-9000,period specification + manufacturer MSDS,period-relevant,Exact grade/product requires records.
+solvents/degreasers,P-D-680 solvent family,period Navy maintenance documentation lists P-D-680,period specification + manufacturer MSDS,period-relevant,Exact type/formulation/task required.
+refrigeration,R-12 refrigerant,period refrigeration candidate,period product MSDS + equipment/manual evidence,candidate,Need equipment-specific support.
+refrigeration,R-114 refrigerant,period A/C/refrigeration candidate,period product MSDS + equipment/manual evidence,candidate,Need equipment-specific support.
+refrigeration,lithium bromide solution,absorption refrigeration/A-C candidate,period product MSDS + equipment/manual evidence,candidate,Need equipment-specific support.
+air filtration,activated charcoal,submarine filtration material family,period specification + supplier MSDS,period-relevant candidate,Dust exposure requires task evidence.
+insulation/packing,"asbestos-containing packing, gaskets, insulation",historically relevant naval material family,product/specification + task/shipyard evidence,period-relevant,Do not infer asbestos content for every product.
+insulation,fiberglass/mineral fiber insulation,period occupational/repair relevance,product/specification + task evidence,period-relevant candidate,Product identity needed.
+cleaners,sanitary tank cleaners/descalers,maintenance task candidate,PMS/work package + exact product MSDS,research-only candidate,Do not assign chemistry without product record.
+cleaners,bilge cleaners/degreasers,maintenance task candidate,PMS/work package + exact product MSDS,research-only candidate,Multiple formulations possible.
+compressors,HP air-compressor oils,HPAC maintenance candidate,equipment manual + exact lubricant spec/MSDS,research-only candidate,Exact compressor/oil required.
+greases,general-purpose and equipment-specific greases,period maintenance candidate,equipment/PMS + spec + manufacturer MSDS,research-only candidate,Multiple formulations.
+oxygen systems,oxygen-system cleaning materials,oxygen-system maintenance candidate,approved procedure + exact product MSDS,research-only candidate,System-specific authorization required.
+paint/preservation,"primers, coatings, thinners, strippers",period maintenance family,spec/product MSDS + work package,research-only candidate,Composition varies by product.
+welding,welding/brazing consumables and coated-metal fumes,period repair/tender family,consumable MSDS + work package,research-only candidate,Composition varies.
+metals,"lead, chromium/chromates, nickel, cadmium where applicable",period occupational/repair candidates,material/process evidence + toxicology,research-only candidate,Presence is process/component specific.
+solvents,"TCE, methylene chloride, toluene, xylene and other solvent families",period occupational-health candidates,exact product/task evidence + MSDS,research-only candidate,Toxicology archive does not prove submarine use.

@@ -22,11 +22,7 @@ The repository name recommended for the new public account is:
 
 ## Shipmate Private Reconstruction Form
 
-When GitHub Pages is enabled for the new repository, use:
-
-`https://sub-shipmate.github.io/submarine-shipmate-hazardous-exposure/forms/Submarine_Shipmate_Private_Reconstruction_Form.html`
-
-The form is for service aboard a **submarine, submarine tender, or both**. USS Guardfish is not referenced in the general form; it remains a separate historical example under `examples/`.
+The form is for service aboard a **submarine, submarine tender, or both**. 
 
 ## Public Reference — Information Only
 
@@ -51,12 +47,3 @@ The evidence path should remain:
 
 Candidate material lists are research prompts, not proof of exposure.
 
-## Moving to the new public GitHub account
-
-For the clean public repository, create:
-
-`submarine-shipmate-hazardous-exposure`
-
-Prefer a fresh Git history rather than copying the old `.git/` directory. Review every staged file before the first public push.
-
-Distribution ZIP files are intentionally excluded by `.gitignore` using `*.zip`.

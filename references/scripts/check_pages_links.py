@@ -10,7 +10,7 @@ for p in html_files:
     for href in re.findall(r'href=["\']([^"\']+)["\']',text):
         if href.startswith(("http://","https://","mailto:","#","data:","javascript:")):
             continue
-        if "index.htmlcatalog" in href or "index.htmlpublic" in href:
+        if "index.htmlcatalog" in href or "index.htmlpublic" in href or "index.htmlforms" in href:
             bad.append((p,href,"malformed concatenated URL"))
             continue
         if href.startswith(BASE+"/"):

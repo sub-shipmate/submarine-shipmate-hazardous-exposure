@@ -22,3 +22,7 @@ See `ARCHIVE_SCRIPT_INSTRUCTIONS.md` before committing new binaries.
 Potentially useful documents whose download or redistribution status is not yet confirmed belong in `catalog-only/`, not `public-archive/`.
 
 Use `catalog-only/reference-links.csv` for provenance and link metadata. Catalog-only records do not create a requirement for a local PDF and are intentionally excluded from archive verification.
+
+## MSDS/SDS research
+
+See `MATERIAL_SAFETY_DATA_SHEETS.md`, `materials-msds-candidates.csv`, and `material-sheet-downloads.csv`. The material-sheet acquisition script downloads only rows explicitly marked `CONFIRMED_PUBLIC_DOWNLOAD`; it does not bypass authentication.
