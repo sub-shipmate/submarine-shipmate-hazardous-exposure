@@ -1,0 +1,29 @@
+source_id,title,date,organization,source_url,archive_path,research_use
+NIOSH-73-11025,TCE,1973,NIOSH,https://stacks.cdc.gov/view/cdc/19333/cdc_19333_DS1.pdf,public-archive/occupational-health/NIOSH_TCE_1973.pdf,period solvent/degreasing toxicology
+NIOSH-78-130,TCE hazard review,1978,NIOSH,https://stacks.cdc.gov/view/cdc/19407/cdc_19407_DS1.pdf,public-archive/occupational-health/NIOSH_TCE_Hazard_Review_1978.pdf,period solvent toxicology
+NIOSH-73-11021,Chromic acid,1973,NIOSH,https://stacks.cdc.gov/view/cdc/19329/cdc_19329_DS1.pdf,public-archive/occupational-health/NIOSH_Chromic_Acid_1973.pdf,coatings/metals research
+NIOSH-73-11023,Toluene,1973,NIOSH,https://stacks.cdc.gov/view/cdc/19331/cdc_19331_DS1.pdf,public-archive/occupational-health/NIOSH_Toluene_1973.pdf,paint/thinner research
+NIOSH-76-138,Methylene chloride,1976,NIOSH,https://stacks.cdc.gov/view/cdc/19354/cdc_19354_DS1.pdf,public-archive/occupational-health/NIOSH_Methylene_Chloride_1976.pdf,degreasing/paint stripping
+NIOSH-76-149,Oxides of nitrogen,1976,NIOSH,https://stacks.cdc.gov/view/cdc/19360/cdc_19360_DS1.pdf,public-archive/occupational-health/NIOSH_NOx_1976.pdf,welding/combustion/atmosphere
+NIOSH-76-148,Methanol,1976,NIOSH,https://stacks.cdc.gov/view/cdc/19359/cdc_19359_DS1.pdf,public-archive/occupational-health/NIOSH_Methanol_1976.pdf,cleaner/solvent research
+NIOSH-77-152,Fibrous glass,1977,NIOSH,https://stacks.cdc.gov/view/cdc/19386/cdc_19386_DS1.pdf,public-archive/occupational-health/NIOSH_Fibrous_Glass_1977.pdf,insulation/fiberglass
+NIOSH-77-164,Inorganic nickel,1977,NIOSH,https://stacks.cdc.gov/view/cdc/19389/cdc_19389_DS1.pdf,public-archive/occupational-health/NIOSH_Nickel_1977.pdf,welding/metals
+NIOSH-78-158,Inorganic lead revised,1978,NIOSH,https://stacks.cdc.gov/view/cdc/19411/cdc_19411_DS1.pdf,public-archive/occupational-health/NIOSH_Lead_1978.pdf,battery/paint/solder/metals
+NIOSH-75-168,Xylene,1975,NIOSH,https://stacks.cdc.gov/view/cdc/19345/cdc_19345_DS1.pdf,public-archive/occupational-health/NIOSH_Xylene_1975.pdf,paint/thinner
+NIOSH-73-11000,Carbon monoxide,1972,NIOSH,https://stacks.cdc.gov/view/cdc/19324/cdc_19324_DS1.pdf,public-archive/occupational-health/NIOSH_CO_1972.pdf,diesel/combustion/atmosphere
+NIOSH-73-11001,Noise,1972,NIOSH,https://stacks.cdc.gov/view/cdc/19325/cdc_19325_DS1.pdf,public-archive/occupational-health/NIOSH_Noise_1972.pdf,noise/hearing
+NIOSH-88-110A,"Welding, brazing, thermal cutting",1988,NIOSH,https://stacks.cdc.gov/view/cdc/175218/cdc_175218_DS1.pdf,public-archive/ship-repair/NIOSH_Welding_1988_Abridged.pdf,tender/repair hot work
+NIOSH-72-ASB,Asbestos criteria,1972,NIOSH,https://stacks.cdc.gov/view/cdc/19321/cdc_19321_DS1.pdf,public-archive/occupational-health/NIOSH_Asbestos_1972.pdf,period asbestos
+NIOSH-77-169,Revised asbestos standard,1976,NIOSH,https://stacks.cdc.gov/view/cdc/11156/cdc_11156_DS1.pdf,public-archive/occupational-health/NIOSH_Asbestos_Revised_1976.pdf,period asbestos
+NIOSH-74-137,Benzene,1974,NIOSH,https://stacks.cdc.gov/view/cdc/19338/cdc_19338_DS1.pdf,public-archive/occupational-health/NIOSH_Benzene_1974.pdf,benzene toxicology
+NIOSH-81-123,Occupational Health Guidelines for Chemical Hazards,1981,NIOSH/OSHA,https://stacks.cdc.gov/view/cdc/209437/cdc_209437_DS1.pdf,public-archive/occupational-health/NIOSH_OSHA_Chemical_Hazards_1981.pdf,large period compendium
+GAO-HRD-80-2,Navy Efforts To Protect Workers From Asbestos Exposure,1979,GAO,https://www.gao.gov/assets/hrd-80-2.pdf,public-archive/ship-repair/GAO_Navy_Asbestos_1979.pdf,Navy asbestos history
+PNS-2005,Portsmouth Naval Shipyard occupational exposure study,2005,NIOSH/CDC,https://stacks.cdc.gov/view/cdc/209864/cdc_209864_DS1.pdf,public-archive/ship-repair/NIOSH_Portsmouth_Naval_Shipyard.pdf,historical work practices/chemicals
+LBNSY,Long Beach Naval Shipyard occupational agents,research archive,NIOSH/CDC,https://stacks.cdc.gov/view/cdc/213881/cdc_213881_DS1.pdf,public-archive/ship-repair/NIOSH_Long_Beach_Naval_Shipyard.pdf,1983/1985 agent list
+SHIPYARD-HIST,Historical shipyard hazards/monitoring,research archive,NIOSH/CDC,https://stacks.cdc.gov/view/cdc/187317/cdc_187317_DS1.pdf,public-archive/ship-repair/NIOSH_Shipyard_Hazards_History.pdf,trades/asbestos/welding/monitoring
+NAVSEA-AS-WC,Submarine Force Standard Work Center Codes,2021,NAVSEA,https://www.navsea.navy.mil/Portals/103/Documents/SUBMEPP/TYCOM/Standard_WC_Codes-Submarine_Force.pdf,public-archive/ship-repair/NAVSEA_Submarine_Force_Work_Center_Codes.pdf,tender repair-shop categories
+MIL-P-24082C,Mark IIIB CO2 removal plant,1981,NAVSEA/DoD,https://quicksearch.dla.mil/qsDocDetails.aspx?ident_number=16795,,catalog/resolve DLA PDF; period MEA-system evidence
+MIL-C-81302D,CFC-113 cleaning solvent,1985,DoD/NAVAIR,https://quicksearch.dla.mil/qsDocDetails.aspx?ident_number=32188,,catalog/resolve DLA PDF; period military solvent candidate
+MIL-PRF-17672,Petroleum hydraulic fluid,historical revisions,DoD,https://quicksearch.dla.mil/qsDocDetails.aspx?ident_number=12454,,catalog; exact historical revision/task needed
+NAS-11170,Submarine Contaminants Vol. 1,2007,National Academies,https://nap.nationalacademies.org/catalog/11170/emergency-and-continuous-exposure-guidance-levels-for-selected-submarine-contaminants,,catalog-only third-party rights
+NAS-12032,Submarine Contaminants Vol. 2,2008,National Academies,https://nap.nationalacademies.org/catalog/12032/emergency-and-continuous-exposure-guidance-levels-for-selected-submarine-contaminants-volume-2,,catalog-only third-party rights

@@ -1,0 +1,13 @@
+platform,task_or_system,research_families,best_record_targets
+Submarine,Atmosphere control / CO2 removal,MEA; CO2; system-specific contaminants,plant manual/spec; MIP/MRC; HM inventory
+Submarine,Extended submerged atmosphere,recognized submarine contaminants,atmosphere guidance; monitoring/logs; ship records
+Submarine,Refrigeration/A-C,period refrigerants; oils; cleaners,plant manual; MRC; HM records
+Submarine,Diesel,diesel fuel/exhaust; CO; oil mist; cleaners; noise,MRC/logs/specs/IH
+Submarine,Hydraulics/valves/pumps,hydraulic fluid; grease; packing; cleaners,MRC material line; spec/NSN
+Tender,Welding/cutting,welding fumes; Cr/Ni; Pb/Cd if applicable; CO/NOx/ozone; coatings,work package; hot-work permit; IH; material certs
+Tender,Machine/valve/hydraulics,oils; cutting fluids; solvents; packing; metals,job order; shop inventory; work package
+Tender,Diesel/engine repair,diesel; oils; solvents; CO; noise,job order; IH; material records
+Tender,Pipe/lagging/insulation,asbestos historically; fiberglass; sealants; dust,work package; asbestos survey; IH
+Tender,Paint/preservation,chromates; lead pigments; solvents; product-specific isocyanates,paint spec; SDS/MSDS; IH
+Tender,Battery/electrical/solder,battery chemistry; lead/acid where applicable; solder/flux; cleaners,battery type; job; material inventory
+Tender,Onboard submarine repair,task-specific agents + submarine compartment conditions,tender work package + submarine records

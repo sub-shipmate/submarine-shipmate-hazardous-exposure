@@ -1,0 +1,16 @@
+responses/*
+!responses/README.md
+private/
+completed/
+exports/
+*.response.json
+.env
+*.zip
+*_response.json
+.env.*
+*.key
+*.pem
+.DS_Store
+Thumbs.db
+*.swp
+*.tmp
