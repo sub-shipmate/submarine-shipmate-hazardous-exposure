@@ -129,6 +129,8 @@ with O.open("w", newline="", encoding="utf-8") as f:
     ])
     w.writerows(rows)
 
+
+
 print("Submarine Shipmate Hazardous Exposure Research Archive")
 print("Archive verification / inventory")
 print()

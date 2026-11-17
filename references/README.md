@@ -26,3 +26,8 @@ Use `catalog-only/reference-links.csv` for provenance and link metadata. Catalog
 ## MSDS/SDS research
 
 See `MATERIAL_SAFETY_DATA_SHEETS.md`, `materials-msds-candidates.csv`, and `material-sheet-downloads.csv`. The material-sheet acquisition script downloads only rows explicitly marked `CONFIRMED_PUBLIC_DOWNLOAD`; it does not bypass authentication.
+
+## Period public-specification acquisition
+
+- `public-spec-downloads.csv` — exact historical Statement-A document parts selected for controlled acquisition.
+- `scripts/archive_public_period_specs.sh` — resolves temporary DLA document links from official revision-history pages and validates PDFs before preservation.
