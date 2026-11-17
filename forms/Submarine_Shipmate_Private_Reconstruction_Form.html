@@ -498,4 +498,123 @@ function exportV23FullJSON(){
 <p><strong>Do not assume:</strong> a the specific ship system was installed on another boat; a Navy-authorized chemical was actually used by a particular sailor; an SDS symptom proves exposure; or a symptom match establishes causation.</p>
 </section>
 
+
+<script>
+function fillNautilusExample(){
+  if(!window.confirm("Load the fictional Nautilus example? This will replace anything currently entered in the form. It will NOT save or transmit data.")) return;
+
+  const FICTION="FICTIONAL EXAMPLE — Jules Verne's Nautilus — NOT A REAL U.S. NAVY SERVICE OR EXPOSURE RECORD";
+  const setName=(name,value)=>{
+    document.querySelectorAll('[name="'+name+'"]').forEach(el=>{
+      if(el.type==='checkbox'||el.type==='radio') el.checked=Boolean(value);
+      else el.value=value;
+    });
+  };
+  const setId=(id,value)=>{ const el=document.getElementById(id); if(el) el.value=value; };
+  const choose=(el,value)=>{
+    if(!el) return;
+    const opts=[...el.options].map(o=>o.value||o.text);
+    el.value=opts.includes(value)?value:(opts.find(v=>v)||'');
+  };
+
+  // General service profile.
+  setName('platform_type','Submarine');
+  setName('boat_name','Nautilus — FICTIONAL vessel from Jules Verne');
+  setName('hull_number','Not applicable — fictional vessel; no U.S. Navy hull number');
+  setName('boat_class','Fictional electrically powered submarine');
+  setName('service_from','1868 (fictional example)');
+  setName('service_to','1870 (fictional example)');
+  setName('rate_rating_nec','Chief Mechanician N. Example — fictional; no U.S. Navy rating/NEC');
+  setName('division_workcenter','Machinery / engineering spaces — fictional example');
+  setName('deployments','Fictional extended undersea voyage aboard the Nautilus. Demonstration entry only; not a historical personnel record.');
+  setName('yard_periods','Fictional maintenance availability at an unnamed remote undersea anchorage. No real shipyard record exists for this example.');
+  setName('other_boats','None — fictional demonstration.');
+  setName('unprompted_recollection','FICTIONAL EXAMPLE: machinery spaces, electric propulsion equipment, pumps, valves, compressed-air equipment, ventilation, storage spaces, metallic dust, oil/grease, cleaning fluids, heat, noise, odors, and routine repairs. These details are invented to demonstrate how a shipmate might record independent recollections before reviewing research prompts.');
+
+  // Private shipmate / event fields.
+  setId('pid','NAUTILUS-EXAMPLE');
+  setId('boat','Nautilus — FICTIONAL');
+  setId('years','1868–1870 — fictional demonstration');
+  setId('duties','Fictional chief mechanician; machinery watches; pumps, valves, electrical machinery, ventilation and general repairs. No U.S. Navy service is represented.');
+  setId('independent','FICTIONAL EXAMPLE ONLY: remembers machinery noise, warm engineering spaces, oily surfaces, valve and pump maintenance, ventilation work, cleaning parts, handling grease, and occasional dust or vapor during repairs. This is invented demonstration content, not a claim about Jules Verne’s text or a real exposure history.');
+  setId('date','1869 — fictional example');
+  setId('space','Nautilus machinery compartment — fictional');
+  setId('system','Fictional propulsion / pumps / valves / ventilation machinery');
+  setId('task','Demonstration maintenance evolution: inspect machinery, clean parts, lubricate bearings, repack a valve, and clean the work area. Invented solely to show a completed form.');
+  setId('materialmemory','Dark machinery oil and cleaning fluid — fictional recollection; exact product unknown');
+  choose(document.getElementById('form'),'Mixed');
+  choose(document.getElementById('route'),'Multiple');
+  setId('ppe','Fictional work gloves and eye protection; adequacy unknown');
+  setId('witness','Captain Nemo and Nautilus crew — fictional characters. Example record lead: personal notes / fictional maintenance log.');
+
+  // Tender / repair-support fields: populated but clearly not applicable.
+  const tender={
+    tender_welding:'Not applicable to a real tender record. FICTIONAL EXAMPLE: occasional metal repair/hot work aboard Nautilus; details invented for demonstration.',
+    tender_machine:'FICTIONAL EXAMPLE: machine and valve work on pumps and fittings; oil/grease and cleaning-fluid contact recorded as research prompts.',
+    tender_diesel:'Not applicable — the fictional Nautilus is not being represented here as a diesel-powered U.S. Navy submarine. Field populated to demonstrate how “not applicable” can be recorded.',
+    tender_pipe:'FICTIONAL EXAMPLE: pipe, flange and valve maintenance; packing material unknown; verify before identifying any real material.',
+    tender_paint:'FICTIONAL EXAMPLE: preservation/cleaning of metal surfaces; coating identity unknown.',
+    tender_electrical:'FICTIONAL EXAMPLE: inspection of electrical machinery and conductors; exact battery/electrical materials not asserted.',
+    tender_refrigeration:'FICTIONAL EXAMPLE: cooling/ventilation equipment maintenance; refrigerant identity unknown and not inferred.',
+    tender_onboard:'Not applicable — Nautilus is the fictional vessel itself, not a tender-supported U.S. Navy submarine.'
+  };
+  Object.entries(tender).forEach(([k,v])=>setName(k,v));
+
+  // Populate every maintenance/task reconstruction control.
+  for(let i=1;i<=21;i++){
+    const mem=document.querySelector('[name="task_memory_'+i+'"]');
+    if(mem) choose(mem, i%3===0?'Unsure':'Yes');
+    setName('task_frequency_'+i, i%2 ? 'Fictional example: recurring during voyage; exact frequency unknown' : 'Fictional example: occasional maintenance evolution');
+    setName('task_ppe_'+i, 'FICTIONAL EXAMPLE: gloves / eye protection / ventilation as available; actual controls not established');
+    const card=document.querySelector('[name="task_notes_'+i+'"]')?.closest('.task-card');
+    const title=card?.querySelector('h3')?.textContent?.trim() || ('Task '+i);
+    setName('task_notes_'+i, FICTION+' — Demonstration note for '+title+'. This field is intentionally populated to show the completed-form appearance; it is not evidence that this equipment or material existed aboard Verne’s Nautilus.');
+  }
+
+  // Populate every submerged-atmosphere review block.
+  for(let i=1;i<=21;i++){
+    setName('submerged_reviewed_'+i,true);
+    const ta=document.querySelector('[name="submerged_notes_'+i+'"]');
+    const card=ta?.closest('.task-card');
+    const title=card?.querySelector('h3')?.textContent?.trim() || ('Atmosphere item '+i);
+    setName('submerged_notes_'+i, FICTION+' — '+title+' reviewed only as an example of how a user might document an atmosphere prompt. No concentration, exposure, symptom, or presence aboard the fictional Nautilus is being asserted.');
+  }
+
+  // Populate all dynamically generated symptom/material rows.
+  document.getElementById('filter').value='';
+  render('');
+  document.querySelectorAll('#tbl tbody tr').forEach((tr,idx)=>{
+    const vals={
+      experienced: idx%3===0?'Yes':(idx%3===1?'No':'Unsure'),
+      onset:'Fictional example — 1869',
+      frequency:idx%2===0?'Example: occasional':'Example: one-time / uncertain',
+      severity:idx%4===0?'Mild':(idx%4===1?'Moderate':(idx%4===2?'Severe':'Unsure')),
+      diagnosed:idx%3===0?'No':(idx%3===1?'Unsure':'No'),
+      remembered:idx%3===0?'Unsure':(idx%3===1?'No':'Yes'),
+      notes:FICTION+' — populated only to demonstrate this row; no real diagnosis, exposure, dose, or causation is claimed.'
+    };
+    tr.querySelectorAll('[data-k]').forEach(el=>{ el.value=vals[el.dataset.k]||''; });
+  });
+
+  // Add a visible banner while the example is loaded.
+  let banner=document.getElementById('fictional-example-banner');
+  if(!banner){
+    banner=document.createElement('div');
+    banner.id='fictional-example-banner';
+    banner.style.cssText='margin:1rem 0;padding:1rem;border:2px solid #8b0000;background:#fff0f0;font-weight:bold';
+    const h1=document.querySelector('h1');
+    h1.insertAdjacentElement('afterend',banner);
+  }
+  banner.textContent='FICTIONAL EXAMPLE LOADED — Nautilus from Jules Verne’s Twenty Thousand Leagues Under the Seas. This is not a real sailor, vessel service record, medical record, or exposure history. Nothing has been saved or transmitted.';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+</script>
+
+
+<div id="fictional-example-controls" style="max-width:1100px;margin:24px auto;padding:16px;border:2px dashed #666;border-radius:8px;background:#fafafa">
+  <strong>Want to see a completed form?</strong>
+  <p style="margin:.45rem 0 .8rem">Load a fully populated fictional demonstration using the <em>Nautilus</em> from Jules Verne’s <em>Twenty Thousand Leagues Under the Seas</em>. The example is clearly marked fictional and does not save or transmit anything.</p>
+  <button type="button" onclick="fillNautilusExample()" style="font-weight:bold">Example</button>
+</div>
+
 </body></html>
