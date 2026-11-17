@@ -1,0 +1,25 @@
+chemical_or_material,cas_or_identifier,submarine_relevance_lane,evidence_target,search_priority,caution
+Monoethanolamine / ethanolamine (MEA),141-43-5,CO2 removal plant,period Navy spec + period MSDS + modern SDS,HIGH,Do not confuse with methylamine.
+Activated charcoal / activated carbon,7440-44-0,main fan room / sanitary vents / CO2 removal plant,MIL-C-17605C + SDS/dust toxicology,HIGH,Material family does not establish a particular boat's loading.
+Lithium hydroxide,1310-65-2,emergency/portable CO2 absorption,PMS/MRC + product/SDS,HIGH,Separate LiOH equipment evidence from MEA scrubber evidence.
+Isopropyl alcohol / 2-propanol,67-63-0,carrier/cleaner; MIL-L-24131 and MIL-L-24478,period product MSDS,HIGH,Multiple unrelated shipboard uses possible.
+Graphite,7782-42-5,MIL-L-24131 anti-galling lubricant / packing,product MSDS + task evidence,HIGH,Dust/solid graphite differs from colloidal dispersion exposure.
+Molybdenum disulfide,1317-33-5,MIL-L-24478 anti-galling lubricant,product MSDS + task evidence,HIGH,Mixture includes isopropanol when supplied under this spec.
+Lead compounds / red lead,1314-41-6,MIL-L-24479 anti-galling compound / coatings,period product MSDS,HIGH,Toxicologically important; exact formulation/product required.
+Mineral oil,mixture,MIL-L-24479 carrier; lubricants,product MSDS,MEDIUM,Highly formulation-dependent.
+Permatex Form-A-Gasket No. 2,MIL-S-45180 Type II lineage,gasket/thread sealing,period MSDS,HIGH,Later formulation may differ.
+Loctite Grade AV / 087,MIL-S-22473 Grade AV,thread locking/sealing,period MSDS,HIGH,Later MSDS is context only.
+Silicone compound,MIL-S-8660,valve/maintenance compound,period product/MSDS,HIGH,Exact qualified product needed.
+2190 TEP turbine oil,MIL-L-17331,shipboard machinery lubrication,period MSDS,HIGH,Existing period MSDS hits should be retained.
+High-performance grease,DOD-G-24508,shipboard auxiliary machinery / valve maintenance,period product/MSDS,HIGH,Product qualification does not prove task/boat.
+R-12 dichlorodifluoromethane,75-71-8,refrigeration,period refrigerant MSDS + equipment evidence,HIGH,Keep R-12 separate from R-114 systems.
+R-114 dichlorotetrafluoroethane,76-14-2,air-conditioning/refrigeration context,period MSDS + equipment evidence,HIGH,Equipment-specific evidence needed.
+Lithium bromide,7550-35-8,absorption refrigeration context,SDS + equipment manual,MEDIUM,Do not infer use without equipment documentation.
+Sulfuric acid,7664-93-9,lead-acid batteries / tender shops,period MSDS + battery maintenance evidence,HIGH,Broad Navy relevance; ship-specific task evidence required.
+Trichloroethylene,79-01-6,degreasing/cleaning historical candidate,period Navy material evidence + MSDS,HIGH,Do not infer submarine use from general Navy use.
+"1,1,1-Trichloroethane",71-55-6,solvent/cleaning candidate,period product/MSDS + task evidence,HIGH,Distinguish from TCE.
+Methylene chloride,75-09-2,solvent/stripper candidate,period product/MSDS + task evidence,MEDIUM,General industrial relevance alone is insufficient.
+Benzene,71-43-2,fuel/solvent contaminant toxicology,source-specific evidence + toxicology,MEDIUM,Not an intended general submarine atmosphere constituent.
+Diesel fuel / F-76,MIL-F/MIL-DTL-16884,diesel generator / fuel handling,period spec + SDS,HIGH,Fuel exposure route/task must be established.
+Asbestos-containing packing/insulation,material family,"valves, piping, insulation, repair",product/spec + historical hazard docs,HIGH,Fiber exposure differs from chemical vapor exposure.
+Welding fumes / electrodes,MIL-E-22200 family,tender/ship repair,electrode spec + SDS/fume data,HIGH,Composition depends on electrode alloy/type.

@@ -33,3 +33,11 @@ NSN-C16173-GR5-1971,,,,NSN/FLIS product cross-reference,NSN created 1971-12-24,,
 MSDS-MOLYKOTE44-1990,,,,MSDS,1990-03-07,,,
 NSN-MILL24478-KIT,,,,NSN/FLIS material identity,,,,
 NSN-MILP24548-1977,,,,NSN/FLIS lead,1977-07-02,,,
+PROD-MILL15719-DC44-1977,High-temperature electric-motor bearing grease,Dow Corning 44 Light,MIL-L-15719,Government handbook product cross-reference,1977-01-05,https://help.bdsbearing.com/hubfs/Knowledge%20Base/Department%20of%20Defense/Military%20Standard%20Manufacturers%20Symbols%20and%20Designations%20for%20Anti-Friction%20Bearings%20%281977%29.pdf,PERIOD PRODUCT BRIDGE,MIL-HDBK-203C lists G-10 as Dow Corning 44 Light (MIL-L-15719); strengthens product identity but does not establish submarine-specific use.
+PROD-MILL24478-NSN9150004243224,Molybdenum disulfide in isopropanol lubricant,NSN 9150-00-424-3224 two-container lubricant kit,MIL-L-24478,Federal stock characteristics / product identity,,https://www.nsndepot.com/NSN/9150-00-424-3224,MATERIAL IDENTITY BRIDGE,"Stock characteristics specify 1500 g molybdenum disulfide plus 1000 mL isopropanol, mixed at time of use; seek period manufacturer/MSDS and task evidence."
+PROD-MILP24548-NSN6850010438511,Penetrating fluid,NSN 6850-01-043-8511,MIL-P-24548,Federal stock cross-reference,1977-07-02,https://www.nsndepot.com/NSN/6850-01-043-8511,PERIOD NSN BRIDGE,Period-created NSN cross-references MIL-P-24548; manufacturer/trade product and period MSDS still required.
+PROD-MILL24131-NEOLUBE-DAG156,,,,Federal stock product cross-reference,NSN created 1966-07-27,,,
+MSDS-PERMATEX-FORMAGASKET2,,,,MSDS / product lineage,later MSDS; period NSN lineage established,,,
+PROD-LOCTITE087-MILS22473-AV,,,,Government historical product chart + manufacturer cross-reference,historical chart 1970; current cross-reference,,,
+MSDS-LOCTITE-GRADEAV-1996,,,,MSDS,1996-01-22,,,
+PROD-MILS45180-FORMAGASKET2-NSN,,,,Federal stock cross-reference,period lineage,,,
