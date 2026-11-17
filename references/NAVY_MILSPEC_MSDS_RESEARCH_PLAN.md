@@ -46,3 +46,9 @@ The second discovery pass adds submarine camouflage coatings, NAVSEA high-temper
 A-A-50433 is deliberately treated as **post-period context** for 1985–1988 research: its base commercial item description dates to 1989. Later Navy guidance documents the fleet changeover from MIL-PRF-24139 to A-A-50433 on submarines, but that later replacement must not be projected backward without period evidence.
 
 `period-spec-acquisition-batch-2.csv` contains Statement-A document components whose exact official record/revision/date have been established sufficiently for controlled acquisition with the existing QuickSearch resolver. It is a research batch list; it does not itself prove ship-specific use.
+
+## PMS / MRC / FOIA evidence stream
+
+See `submarine-pms-mrc-foia-discovery.csv` and `SUBMARINE_PMS_MRC_FOIA_REQUEST.md`.
+
+PMS/MRC records are especially valuable because an MRC can identify the exact task, safety precautions, tools, parts, materials, and test equipment. Treat an MRC as task/material evidence, not as proof that a particular sailor performed the task. Historical revision dates remain essential.

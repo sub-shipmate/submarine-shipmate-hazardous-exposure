@@ -17,3 +17,9 @@ A specification or SDS/MSDS establishes information about a document, material, 
 Use the evidence path:
 
 platform/class → ship/tender → shop/compartment → equipment → task/work package/PMS → material/product → exposure route → toxicology/medical evidence
+
+## Controlled / restricted public links
+
+A web-accessible PDF is not automatically authorized for redistribution. When a useful document is identified as **Distribution Statement C**, export-controlled, NOFORN, CUI, or otherwise restricted, this repository records the public record/PDF link and restriction metadata but does **not** copy the PDF into the public archive.
+
+See `controlled-restricted-document-links.csv`.
