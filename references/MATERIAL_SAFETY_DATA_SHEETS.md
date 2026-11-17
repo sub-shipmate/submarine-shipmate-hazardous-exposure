@@ -7,3 +7,9 @@ Research should proceed from platform/ship/tender → compartment/shop → equip
 A generic chemical SDS is not proof that a particular product or formulation was aboard a particular submarine. Current Navy/DoD hazardous-material systems may be access-controlled; do not automate around authentication. Public documents should be preserved only after public-release/redistribution status is reviewed.
 
 See `materials-msds-candidates.csv` for candidate material families and `material-sheet-downloads.csv` for reviewed public download targets.
+
+## Catalog integration
+
+`catalog-only/reference-links.csv` now contains verified public research landing pages and, where appropriate, separate direct-document URLs. `materials-msds-candidates.csv` cross-references catalog IDs for material families with supporting specification leads.
+
+A military specification is not an MSDS/SDS. For product-specific exposure reconstruction, continue searching for the exact manufacturer, trade name, NSN/NIIN, formulation/revision, and period MSDS/SDS after the material/product identity is established.

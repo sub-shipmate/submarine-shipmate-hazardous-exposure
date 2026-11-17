@@ -40,9 +40,39 @@ for p in markdown_files:
     t=p.read_text(encoding="utf-8",errors="replace")
     for href in re.findall(r'\[[^\]]*\]\(([^)\s]+)(?:\s+["\'][^"\']*["\'])?\)',t): check(p,href)
 
+
+# CSV URL validation for public research catalogs.
+import csv
+csv_files = [
+    ROOT / "references/catalog-only/reference-links.csv",
+    ROOT / "references/research-leads.csv",
+    ROOT / "references/materials-msds-candidates.csv",
+    ROOT / "references/material-sheet-downloads.csv",
+]
+csv_urls_checked = 0
+for cp in csv_files:
+    if not cp.exists():
+        continue
+    with cp.open(newline="", encoding="utf-8-sig") as fh:
+        for row in csv.DictReader(fh):
+            for key, value in row.items():
+                if not value or "url" not in (key or "").lower():
+                    continue
+                value=value.strip()
+                if not value:
+                    continue
+                csv_urls_checked += 1
+                u=urlparse(value)
+                if u.scheme not in ("http","https") or not u.netloc:
+                    bad.append((cp, value, f"invalid URL in CSV column {key}"))
+                elif u.netloc == HOST and u.path.startswith(BASE + "/"):
+                    target=ROOT/unquote(u.path[len(BASE)+1:])
+                    if not target.exists():
+                        bad.append((cp, value, f"CSV GitHub Pages target missing locally ({key})"))
+
 if bad:
     print("Pages/Markdown link check: FAIL")
     for p,href,why in bad: print(f"  {p.relative_to(ROOT)} -> {href} [{why}]")
     print(f"\nProblems found: {len(bad)}")
     sys.exit(1)
-print(f"Pages/Markdown link check: PASS ({len(html_files)} HTML files, {len(markdown_files)} Markdown files checked)")
+print(f"Pages/Markdown/CSV link check: PASS ({len(html_files)} HTML files, {len(markdown_files)} Markdown files, {csv_urls_checked} CSV URLs checked)")
