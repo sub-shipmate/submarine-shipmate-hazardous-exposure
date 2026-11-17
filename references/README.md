@@ -31,3 +31,7 @@ See `MATERIAL_SAFETY_DATA_SHEETS.md`, `materials-msds-candidates.csv`, and `mate
 
 - `public-spec-downloads.csv` — exact historical Statement-A document parts selected for controlled acquisition.
 - `scripts/archive_public_period_specs.sh` — resolves temporary DLA document links from official revision-history pages and validates PDFs before preservation.
+
+## Expanded MILSPEC / MSDS-SDS research
+
+See `NAVY_MILSPEC_MSDS_RESEARCH_PLAN.md`, `navy-period-material-spec-discovery.csv`, and `industry-msds-sds-discovery.csv` for the controlled discovery register and product-level research leads.
