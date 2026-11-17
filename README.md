@@ -12,17 +12,8 @@ The form is a **private reconstruction tool**. Completing it does not submit you
 
 - **[Open the Shipmate Private Reconstruction Form](https://sub-shipmate.github.io/submarine-shipmate-hazardous-exposure/forms/Submarine_Shipmate_Private_Reconstruction_Form.html)**
 - **[Browse the Public Research Archive](https://sub-shipmate.github.io/submarine-shipmate-hazardous-exposure/references/index.html)**
-- **[Catalog-Only / Unverified Download References](https://sub-shipmate.github.io/submarine-shipmate-hazardous-exposure/references/index.htmlcatalog-only/)**
-
-The repository name recommended for the new public account is:
-
-`submarine-shipmate-hazardous-exposure`
-
-“Hazardous exposure” describes the overall research archive. **Reconstruction** is retained for the private form and research method because the form reconstructs service, compartments/shops, equipment, tasks, materials, routes, controls, incidents, symptoms and record leads.
-
-## Shipmate Private Reconstruction Form
-
-The form is for service aboard a **submarine, submarine tender, or both**. 
+- **[Catalog-Only / Unverified Download References](https://sub-shipmate.github.io/submarine-shipmate-hazardous-exposure/references/catalog-only/index.html)**
+- **[VA Form 21-10210 — Lay/Witness Statement (Buddy Statement)](https://www.va.gov/forms/21-10210/)** — Official VA form for a shipmate or other witness to provide a lay/witness statement.
 
 ## Public Reference — Information Only
 

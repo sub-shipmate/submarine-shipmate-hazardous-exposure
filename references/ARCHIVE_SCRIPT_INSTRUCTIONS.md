@@ -91,3 +91,7 @@ python3 references/scripts/check_pages_links.py
 ```
 
 The checker validates root-relative internal Pages targets and rejects known malformed concatenated URLs.
+
+## Public-site link verification
+
+Run `python3 references/scripts/check_pages_links.py`. The checker validates internal links in both HTML and Markdown, including `README.md`, and rejects malformed concatenated Pages paths.
