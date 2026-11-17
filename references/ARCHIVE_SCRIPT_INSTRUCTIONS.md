@@ -81,3 +81,13 @@ The verifier only requires local binaries for manifest paths beginning with `pub
 ## GitHub Pages files inside the archive
 
 `README.md` and `index.html` files under `references/public-archive/` are documentation/navigation files, not preserved source documents. The verifier intentionally excludes them from the unmanifested-evidence check. PDFs and other evidence binaries remain subject to manifest verification.
+
+## GitHub Pages link verification
+
+After changing site navigation, run:
+
+```bash
+python3 references/scripts/check_pages_links.py
+```
+
+The checker validates root-relative internal Pages targets and rejects known malformed concatenated URLs.
