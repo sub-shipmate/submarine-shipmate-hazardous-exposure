@@ -43,6 +43,47 @@ for k,label in CATS:
         content="<p>Research in progress. No preserved PDFs are currently assigned to this category in the manifest.</p>"
     content+='<p class="warning"><strong>Evidence limitation:</strong> a document in this category is research evidence only; it does not by itself establish ship-specific use or individual exposure.</p>'
     outputs[ARCH/k/"index.html"]=shell(label,content)
+
+# Keep top-level Research Library and Catalog landing pages synchronized too.
+research_body = (
+    '<p>The research library separates documents selected for public preservation from catalog and discovery references that remain link-only or under review.</p>'
+    '<div class="grid">'
+    f'<div class="card"><h2><a href="{BASE}/references/public-archive/index.html">Public Research Archive</a></h2><p>Browse the <strong>{len(files)} preserved PDFs</strong>, grouped by research category.</p></div>'
+    f'<div class="card"><h2><a href="{BASE}/references/catalog-only/index.html">Catalog-Only References</a></h2><p>Browse public-source leads, controlled/restricted link-only records, Navy specification discovery, and material/MSDS research registers.</p></div>'
+    f'<div class="card"><h2><a href="{BASE}/forms/Submarine_Shipmate_Private_Reconstruction_Form.html">Shipmate Private Reconstruction Form</a></h2><p>The form operates locally in the browser and is not a public submission mechanism.</p></div>'
+    '</div><h2>Research data and methodology</h2><ul>'
+    f'<li><a href="{BASE}/references/reference-manifest.csv">Reference manifest</a></li>'
+    f'<li><a href="{BASE}/references/archive-inventory.csv">Archive inventory and checksums</a></li>'
+    f'<li><a href="{BASE}/references/task-to-evidence-matrix.csv">Task-to-evidence matrix</a></li>'
+    f'<li><a href="{BASE}/references/research-leads.csv">Research leads</a></li>'
+    f'<li><a href="{BASE}/references/README.md">Reference archive documentation</a></li></ul>'
+)
+outputs[REFS/"index.html"] = shell("Research Library", research_body)
+
+def csv_count(path):
+    with path.open(newline="", encoding="utf-8-sig") as f:
+        return sum(1 for _ in csv.DictReader(f))
+
+registers = [
+    ("General catalog", REFS/"catalog-only/reference-links.csv", "catalog-only/reference-links.csv", "Public source/reference leads not automatically mirrored."),
+    ("Controlled / restricted document links", REFS/"catalog-only/controlled-restricted-document-links.csv", "catalog-only/controlled-restricted-document-links.csv", "Distribution-C, export-controlled, or otherwise restricted documents: metadata/link only; PDFs are not mirrored."),
+    ("Navy period material/spec discovery", REFS/"navy-period-material-spec-discovery.csv", "navy-period-material-spec-discovery.csv", "Period specification and standard discovery queue, including revision/distribution research."),
+    ("Industry MSDS/SDS discovery", REFS/"industry-msds-sds-discovery.csv", "industry-msds-sds-discovery.csv", "Manufacturer/product/MSDS/SDS identity and period-lineage research."),
+    ("Material/MSDS candidates", REFS/"materials-msds-candidates.csv", "materials-msds-candidates.csv", "Candidate material/product safety-sheet research; candidate status is not exposure proof."),
+    ("Material sheet downloads", REFS/"material-sheet-downloads.csv", "material-sheet-downloads.csv", "Safety-sheet acquisition/download tracking."),
+    ("Research leads", REFS/"research-leads.csv", "research-leads.csv", "Additional evidence and document leads.")
+]
+cards=[]
+for label,path,href,note in registers:
+    cards.append(f'<div class="card"><h3><a href="{BASE}/references/{href}">{html.escape(label)}</a></h3><p><strong>{csv_count(path)} records</strong></p><p>{html.escape(note)}</p></div>')
+catalog_body = (
+    '<p class="warning"><strong>Catalog-only policy.</strong> These are research leads, metadata registers, and public source links. A public link does not by itself authorize republication. Restricted/export-controlled PDFs are not mirrored.</p>'
+    f'<p>The original general catalog contains <strong>{csv_count(REFS/"catalog-only/reference-links.csv")} records</strong>. The registers below are intentionally separate because they track different evidence and distribution states.</p>'
+    '<div class="grid">' + "".join(cards) + '</div>'
+    '<h2>How to read these registers</h2><p>Specification, product, NSN, MSDS/SDS, and shipboard-maintenance evidence are kept as separate links in the evidence chain. None of these records alone establishes that a product was aboard a particular submarine or tender or that an individual encountered it.</p>'
+)
+outputs[REFS/"catalog-only/index.html"] = shell("Catalog-Only / Research Registers", catalog_body)
+
 check="--check" in sys.argv
 bad=[]
 for p,text in outputs.items():
