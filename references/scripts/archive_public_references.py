@@ -110,7 +110,13 @@ for sid, rel, url in manifest:
 unmanifested = []
 if A.exists():
     for p in sorted(A.rglob("*")):
-        if p.is_file() and p.name.lower() != "readme.md" and p.resolve() not in expected_abs:
+        # README.md and index.html are archive documentation / GitHub Pages
+        # navigation, not preserved evidence binaries. Do not require manifest entries.
+        if (
+            p.is_file()
+            and p.name.lower() not in {"readme.md", "index.html"}
+            and p.resolve() not in expected_abs
+        ):
             unmanifested.append(str(p.relative_to(R)))
 
 duplicates = {h: paths for h, paths in hash_to_paths.items() if len(paths) > 1}

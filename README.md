@@ -11,8 +11,8 @@ Use the **[Shipmate Private Reconstruction Form](https://sub-shipmate.github.io/
 The form is a **private reconstruction tool**. Completing it does not submit your information to this public repository.
 
 - **[Open the Shipmate Private Reconstruction Form](https://sub-shipmate.github.io/submarine-shipmate-hazardous-exposure/forms/Submarine_Shipmate_Private_Reconstruction_Form.html)**
-- **[Browse the Public Research Archive](https://sub-shipmate.github.io/submarine-shipmate-hazardous-exposure/references/)**
-- **[Catalog-Only / Unverified Download References](https://sub-shipmate.github.io/submarine-shipmate-hazardous-exposure/references/catalog-only/)**
+- **[Browse the Public Research Archive](https://sub-shipmate.github.io/submarine-shipmate-hazardous-exposure/references/index.html)**
+- **[Catalog-Only / Unverified Download References](https://sub-shipmate.github.io/submarine-shipmate-hazardous-exposure/references/index.htmlcatalog-only/)**
 
 The repository name recommended for the new public account is:
 

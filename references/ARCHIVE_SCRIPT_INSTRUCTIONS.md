@@ -77,3 +77,7 @@ references/catalog-only/README.md
 ```
 
 The verifier only requires local binaries for manifest paths beginning with `public-archive/`. README documentation files inside archive category directories are ignored when checking for unmanifested evidence files.
+
+## GitHub Pages files inside the archive
+
+`README.md` and `index.html` files under `references/public-archive/` are documentation/navigation files, not preserved source documents. The verifier intentionally excludes them from the unmanifested-evidence check. PDFs and other evidence binaries remain subject to manifest verification.
