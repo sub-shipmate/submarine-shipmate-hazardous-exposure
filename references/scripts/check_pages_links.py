@@ -44,8 +44,129 @@ for p in markdown_files:
     for href in re.findall(r'\[[^\]]*\]\(([^)\s]+)(?:\s+["\'][^"\']*["\'])?\)',t): check(p,href)
 
 
-# CSV URL validation for public research catalogs.
+# Research evidence CSV schema and evidence-scope validation.
 import csv
+
+research_csv_specs = {
+    ROOT / "references/catalog-only/hazard-health-evidence.csv": {
+        "fields": [
+            "hazard",
+            "cas_number",
+            "exposure_route",
+            "target_system",
+            "effect_or_finding",
+            "timeframe",
+            "source",
+            "source_url",
+            "evidence_scope",
+            "limitations",
+        ],
+        "allowed_scopes": {
+            "AUTHORITATIVE_HAZARD",
+        },
+        "forbidden_scopes": {
+            "INDIVIDUAL_EXPOSURE_EVIDENCE",
+        },
+        "required": {
+            "hazard",
+            "source",
+            "source_url",
+            "evidence_scope",
+            "limitations",
+        },
+    },
+    ROOT / "references/catalog-only/exposure-evidence.csv": {
+        "fields": [
+            "hazard",
+            "cas_number",
+            "evidence_type",
+            "specimen_or_medium",
+            "measurement",
+            "evidence_interpretation",
+            "temporal_scope",
+            "source",
+            "source_url",
+            "evidence_scope",
+            "limitations",
+        ],
+        "allowed_scopes": {
+            "INDIVIDUAL_EXPOSURE_EVIDENCE",
+        },
+        "forbidden_scopes": {
+            "AUTHORITATIVE_HAZARD",
+        },
+        "required": {
+            "hazard",
+            "evidence_type",
+            "evidence_interpretation",
+            "source",
+            "source_url",
+            "evidence_scope",
+            "limitations",
+        },
+    },
+}
+
+schema_problems = []
+
+for cp, spec in research_csv_specs.items():
+    if not cp.exists():
+        schema_problems.append(
+            (cp, "required research evidence CSV is missing")
+        )
+        continue
+
+    with cp.open(newline="", encoding="utf-8-sig") as fh:
+        reader = csv.DictReader(fh)
+
+        if reader.fieldnames != spec["fields"]:
+            schema_problems.append(
+                (
+                    cp,
+                    "schema mismatch: "
+                    f"expected {spec['fields']!r}, got {reader.fieldnames!r}",
+                )
+            )
+            continue
+
+        for line_no, row in enumerate(reader, start=2):
+            for field in spec["required"]:
+                if not (row.get(field) or "").strip():
+                    schema_problems.append(
+                        (cp, f"line {line_no}: required field {field!r} is empty")
+                    )
+
+            scope = (row.get("evidence_scope") or "").strip()
+
+            if scope in spec["forbidden_scopes"]:
+                schema_problems.append(
+                    (
+                        cp,
+                        f"line {line_no}: forbidden evidence_scope {scope!r}",
+                    )
+                )
+            elif scope not in spec["allowed_scopes"]:
+                schema_problems.append(
+                    (
+                        cp,
+                        f"line {line_no}: unknown evidence_scope {scope!r}; "
+                        f"allowed: {sorted(spec['allowed_scopes'])!r}",
+                    )
+                )
+
+if schema_problems:
+    print("Research evidence CSV schema/scope check: FAIL")
+    for cp, why in schema_problems:
+        print(f"  {cp.relative_to(ROOT)} -> {why}")
+    sys.exit(1)
+
+print(
+    "Research evidence CSV schema/scope check: PASS "
+    f"({len(research_csv_specs)} evidence datasets)"
+)
+
+
+# CSV URL validation for public research catalogs.
 csv_files = sorted((ROOT / "references").rglob("*.csv"))
 csv_urls_checked = 0
 for cp in csv_files:
