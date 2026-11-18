@@ -328,6 +328,71 @@ print(
     f"({len(hazard_ids)} hazards)"
 )
 
+# Evidence-to-hazard referential integrity validation.
+hazard_reference_problems = []
+
+hazards_by_name = {}
+if hazards_csv.exists():
+    with hazards_csv.open(newline="", encoding="utf-8") as f:
+        reader = csv.DictReader(f)
+        for row in reader:
+            hazard = (row.get("hazard") or "").strip()
+            if hazard:
+                hazards_by_name[hazard] = {
+                    "hazard_id": (row.get("hazard_id") or "").strip(),
+                    "cas_number": (row.get("cas_number") or "").strip(),
+                }
+
+for evidence_csv in research_csv_specs:
+    if not evidence_csv.exists():
+        continue
+
+    with evidence_csv.open(newline="", encoding="utf-8") as f:
+        reader = csv.DictReader(f)
+
+        for line_no, row in enumerate(reader, start=2):
+            evidence_id = (row.get("evidence_id") or "").strip()
+            hazard = (row.get("hazard") or "").strip()
+            cas_number = (row.get("cas_number") or "").strip()
+
+            canonical = hazards_by_name.get(hazard)
+
+            if canonical is None:
+                hazard_reference_problems.append(
+                    (
+                        evidence_csv,
+                        f"line {line_no}: evidence_id "
+                        f"{evidence_id!r} references unregistered "
+                        f"hazard {hazard!r}",
+                    )
+                )
+                continue
+
+            canonical_cas = canonical["cas_number"]
+
+            if cas_number != canonical_cas:
+                hazard_reference_problems.append(
+                    (
+                        evidence_csv,
+                        f"line {line_no}: evidence_id "
+                        f"{evidence_id!r} CAS {cas_number!r} "
+                        f"does not match canonical hazard "
+                        f"{canonical['hazard_id']!r} CAS "
+                        f"{canonical_cas!r}",
+                    )
+                )
+
+if hazard_reference_problems:
+    print("Evidence-to-hazard reference check: FAIL")
+    for cp, msg in hazard_reference_problems:
+        print(f"  {cp.relative_to(ROOT)} -> {msg}")
+    raise SystemExit(1)
+
+print(
+    "Evidence-to-hazard reference check: PASS "
+    f"({len(hazards_by_name)} canonical hazards)"
+)
+
 # CSV URL validation for public research catalogs.
 csv_files = sorted((ROOT / "references").rglob("*.csv"))
 csv_urls_checked = 0
