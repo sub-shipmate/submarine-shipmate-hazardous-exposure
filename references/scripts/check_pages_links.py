@@ -50,6 +50,7 @@ import csv
 research_csv_specs = {
     ROOT / "references/catalog-only/hazard-health-evidence.csv": {
         "fields": [
+            "evidence_id",
             "hazard",
             "cas_number",
             "exposure_route",
@@ -61,6 +62,7 @@ research_csv_specs = {
             "evidence_scope",
             "limitations",
         ],
+        "id_prefix": "HHE-",
         "allowed_scopes": {
             "AUTHORITATIVE_HAZARD",
         },
@@ -68,6 +70,7 @@ research_csv_specs = {
             "INDIVIDUAL_EXPOSURE_EVIDENCE",
         },
         "required": {
+            "evidence_id",
             "hazard",
             "source",
             "source_url",
@@ -77,6 +80,7 @@ research_csv_specs = {
     },
     ROOT / "references/catalog-only/exposure-evidence.csv": {
         "fields": [
+            "evidence_id",
             "hazard",
             "cas_number",
             "evidence_type",
@@ -89,6 +93,7 @@ research_csv_specs = {
             "evidence_scope",
             "limitations",
         ],
+        "id_prefix": "EXP-",
         "allowed_scopes": {
             "INDIVIDUAL_EXPOSURE_EVIDENCE",
         },
@@ -96,6 +101,7 @@ research_csv_specs = {
             "AUTHORITATIVE_HAZARD",
         },
         "required": {
+            "evidence_id",
             "hazard",
             "evidence_type",
             "evidence_interpretation",
@@ -107,6 +113,7 @@ research_csv_specs = {
     },
     ROOT / "references/catalog-only/occupational-comparison-evidence.csv": {
         "fields": [
+            "evidence_id",
             "hazard",
             "cas_number",
             "workplace_or_process",
@@ -118,6 +125,7 @@ research_csv_specs = {
             "evidence_scope",
             "limitations",
         ],
+        "id_prefix": "OCC-",
         "allowed_scopes": {
             "OCCUPATIONAL_COMPARISON",
         },
@@ -126,6 +134,7 @@ research_csv_specs = {
             "INDIVIDUAL_EXPOSURE_EVIDENCE",
         },
         "required": {
+            "evidence_id",
             "hazard",
             "workplace_or_process",
             "evidence_type",
@@ -160,12 +169,37 @@ for cp, spec in research_csv_specs.items():
             )
             continue
 
+        seen_evidence_ids = set()
+
         for line_no, row in enumerate(reader, start=2):
             for field in spec["required"]:
                 if not (row.get(field) or "").strip():
                     schema_problems.append(
                         (cp, f"line {line_no}: required field {field!r} is empty")
                     )
+
+            evidence_id = (row.get("evidence_id") or "").strip()
+
+            if evidence_id:
+                if not evidence_id.startswith(spec["id_prefix"]):
+                    schema_problems.append(
+                        (
+                            cp,
+                            f"line {line_no}: evidence_id {evidence_id!r} "
+                            f"must start with {spec['id_prefix']!r}",
+                        )
+                    )
+
+                if evidence_id in seen_evidence_ids:
+                    schema_problems.append(
+                        (
+                            cp,
+                            f"line {line_no}: duplicate evidence_id "
+                            f"{evidence_id!r}",
+                        )
+                    )
+
+                seen_evidence_ids.add(evidence_id)
 
             scope = (row.get("evidence_scope") or "").strip()
 
