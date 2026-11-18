@@ -14,3 +14,5 @@ exports/
 Thumbs.db
 *.swp
 *.tmp
+__pycache__/
+*.py[cod]
