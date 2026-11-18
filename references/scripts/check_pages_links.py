@@ -105,6 +105,37 @@ research_csv_specs = {
             "limitations",
         },
     },
+    ROOT / "references/catalog-only/occupational-comparison-evidence.csv": {
+        "fields": [
+            "hazard",
+            "cas_number",
+            "workplace_or_process",
+            "evidence_type",
+            "measurement_or_observation",
+            "finding",
+            "source",
+            "source_url",
+            "evidence_scope",
+            "limitations",
+        ],
+        "allowed_scopes": {
+            "OCCUPATIONAL_COMPARISON",
+        },
+        "forbidden_scopes": {
+            "AUTHORITATIVE_HAZARD",
+            "INDIVIDUAL_EXPOSURE_EVIDENCE",
+        },
+        "required": {
+            "hazard",
+            "workplace_or_process",
+            "evidence_type",
+            "finding",
+            "source",
+            "source_url",
+            "evidence_scope",
+            "limitations",
+        },
+    },
 }
 
 schema_problems = []
