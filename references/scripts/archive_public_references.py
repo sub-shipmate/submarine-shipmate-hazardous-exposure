@@ -122,7 +122,7 @@ if A.exists():
 duplicates = {h: paths for h, paths in hash_to_paths.items() if len(paths) > 1}
 
 with O.open("w", newline="", encoding="utf-8") as f:
-    w = csv.writer(f)
+    w = csv.writer(f, lineterminator="\n")
     w.writerow([
         "source_id", "archive_path", "bytes", "sha256", "sha512",
         "pdf_signature_ok", "file_mtime_utc", "source_url", "status"
