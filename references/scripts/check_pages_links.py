@@ -393,6 +393,226 @@ print(
     f"({len(hazards_by_name)} canonical hazards)"
 )
 
+# Evidence relationship graph validation.
+relationships_csv = (
+    ROOT / "references/catalog-only/evidence-relationships.csv"
+)
+relationship_problems = []
+
+expected_relationship_fields = [
+    "relationship_id",
+    "subject_type",
+    "subject_id",
+    "predicate",
+    "object_type",
+    "object_id",
+    "evidence_scope",
+    "limitations",
+]
+
+predicate_scopes = {
+    "HAS_HEALTH_ASSOCIATION": "AUTHORITATIVE_HAZARD",
+    "HAS_INDIVIDUAL_EXPOSURE_EVIDENCE":
+        "INDIVIDUAL_EXPOSURE_EVIDENCE",
+    "HAS_OCCUPATIONAL_COMPARISON": "OCCUPATIONAL_COMPARISON",
+}
+
+canonical_hazard_ids = set()
+hazard_id_by_name = {}
+
+if hazards_csv.exists():
+    with hazards_csv.open(newline="", encoding="utf-8") as f:
+        for row in csv.DictReader(f):
+            hazard_id = (row.get("hazard_id") or "").strip()
+            hazard = (row.get("hazard") or "").strip()
+
+            if hazard_id:
+                canonical_hazard_ids.add(hazard_id)
+
+            if hazard and hazard_id:
+                hazard_id_by_name[hazard] = hazard_id
+
+evidence_records = {}
+
+for evidence_csv in research_csv_specs:
+    if not evidence_csv.exists():
+        continue
+
+    with evidence_csv.open(newline="", encoding="utf-8") as f:
+        for row in csv.DictReader(f):
+            evidence_id = (row.get("evidence_id") or "").strip()
+            hazard = (row.get("hazard") or "").strip()
+            scope = (row.get("evidence_scope") or "").strip()
+
+            if evidence_id:
+                evidence_records[evidence_id] = {
+                    "hazard_id": hazard_id_by_name.get(hazard),
+                    "scope": scope,
+                }
+
+seen_relationship_ids = set()
+
+if not relationships_csv.exists():
+    relationship_problems.append(
+        (relationships_csv, "missing evidence relationship registry")
+    )
+else:
+    with relationships_csv.open(newline="", encoding="utf-8") as f:
+        reader = csv.DictReader(f)
+
+        if reader.fieldnames != expected_relationship_fields:
+            relationship_problems.append(
+                (
+                    relationships_csv,
+                    "unexpected fields: "
+                    f"{reader.fieldnames!r}; expected "
+                    f"{expected_relationship_fields!r}",
+                )
+            )
+        else:
+            for line_no, row in enumerate(reader, start=2):
+                values = {
+                    field: (row.get(field) or "").strip()
+                    for field in expected_relationship_fields
+                }
+
+                for field in expected_relationship_fields:
+                    if not values[field]:
+                        relationship_problems.append(
+                            (
+                                relationships_csv,
+                                f"line {line_no}: required field "
+                                f"{field!r} is empty",
+                            )
+                        )
+
+                relationship_id = values["relationship_id"]
+                subject_type = values["subject_type"]
+                subject_id = values["subject_id"]
+                predicate = values["predicate"]
+                object_type = values["object_type"]
+                object_id = values["object_id"]
+                scope = values["evidence_scope"]
+
+                if (
+                    relationship_id
+                    and not relationship_id.startswith("REL-")
+                ):
+                    relationship_problems.append(
+                        (
+                            relationships_csv,
+                            f"line {line_no}: relationship_id "
+                            f"{relationship_id!r} must start with 'REL-'",
+                        )
+                    )
+
+                if relationship_id in seen_relationship_ids:
+                    relationship_problems.append(
+                        (
+                            relationships_csv,
+                            f"line {line_no}: duplicate relationship_id "
+                            f"{relationship_id!r}",
+                        )
+                    )
+
+                if relationship_id:
+                    seen_relationship_ids.add(relationship_id)
+
+                if subject_type != "HAZARD":
+                    relationship_problems.append(
+                        (
+                            relationships_csv,
+                            f"line {line_no}: subject_type "
+                            f"{subject_type!r} must be 'HAZARD'",
+                        )
+                    )
+
+                if object_type != "EVIDENCE":
+                    relationship_problems.append(
+                        (
+                            relationships_csv,
+                            f"line {line_no}: object_type "
+                            f"{object_type!r} must be 'EVIDENCE'",
+                        )
+                    )
+
+                if (
+                    subject_id
+                    and subject_id not in canonical_hazard_ids
+                ):
+                    relationship_problems.append(
+                        (
+                            relationships_csv,
+                            f"line {line_no}: unknown hazard "
+                            f"subject_id {subject_id!r}",
+                        )
+                    )
+
+                evidence = evidence_records.get(object_id)
+
+                if object_id and evidence is None:
+                    relationship_problems.append(
+                        (
+                            relationships_csv,
+                            f"line {line_no}: unknown evidence "
+                            f"object_id {object_id!r}",
+                        )
+                    )
+
+                expected_scope = predicate_scopes.get(predicate)
+
+                if predicate and expected_scope is None:
+                    relationship_problems.append(
+                        (
+                            relationships_csv,
+                            f"line {line_no}: unknown predicate "
+                            f"{predicate!r}",
+                        )
+                    )
+                elif expected_scope and scope != expected_scope:
+                    relationship_problems.append(
+                        (
+                            relationships_csv,
+                            f"line {line_no}: predicate {predicate!r} "
+                            f"requires evidence_scope "
+                            f"{expected_scope!r}, not {scope!r}",
+                        )
+                    )
+
+                if evidence is not None:
+                    if scope != evidence["scope"]:
+                        relationship_problems.append(
+                            (
+                                relationships_csv,
+                                f"line {line_no}: evidence_scope "
+                                f"{scope!r} does not match object "
+                                f"{object_id!r} scope "
+                                f"{evidence['scope']!r}",
+                            )
+                        )
+
+                    if subject_id != evidence["hazard_id"]:
+                        relationship_problems.append(
+                            (
+                                relationships_csv,
+                                f"line {line_no}: hazard subject "
+                                f"{subject_id!r} does not match "
+                                f"evidence object {object_id!r} hazard "
+                                f"{evidence['hazard_id']!r}",
+                            )
+                        )
+
+if relationship_problems:
+    print("Evidence relationship graph check: FAIL")
+    for cp, msg in relationship_problems:
+        print(f"  {cp.relative_to(ROOT)} -> {msg}")
+    raise SystemExit(1)
+
+print(
+    "Evidence relationship graph check: PASS "
+    f"({len(seen_relationship_ids)} relationships)"
+)
+
 # CSV URL validation for public research catalogs.
 csv_files = sorted((ROOT / "references").rglob("*.csv"))
 csv_urls_checked = 0
