@@ -1,0 +1,5 @@
+hazard_id,hazard,cas_number,entity_type,notes
+HAZ-LEAD,Lead,7439-92-1,chemical,Elemental lead identifier used for evidence relationships.
+HAZ-ANTIMONY,Antimony,7440-36-0,chemical,Elemental antimony identifier used for evidence relationships.
+HAZ-SULFURIC-ACID,Sulfuric acid,7664-93-9,chemical,Sulfuric acid identifier used for evidence relationships.
+HAZ-STIBINE,Stibine,7803-52-3,chemical,"Currently represented only by occupational-comparison evidence; inclusion in this registry does not establish generation, presence, or exposure aboard a submarine."

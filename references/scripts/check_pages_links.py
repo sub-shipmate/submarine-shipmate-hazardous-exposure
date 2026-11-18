@@ -231,6 +231,103 @@ print(
 )
 
 
+# Canonical hazard registry validation.
+hazards_csv = ROOT / "references/catalog-only/hazards.csv"
+hazard_registry_problems = []
+hazard_ids = set()
+hazard_names = set()
+
+expected_hazard_fields = [
+    "hazard_id",
+    "hazard",
+    "cas_number",
+    "entity_type",
+    "notes",
+]
+
+if not hazards_csv.exists():
+    hazard_registry_problems.append(
+        (hazards_csv, "missing canonical hazard registry")
+    )
+else:
+    with hazards_csv.open(newline="", encoding="utf-8") as f:
+        reader = csv.DictReader(f)
+
+        if reader.fieldnames != expected_hazard_fields:
+            hazard_registry_problems.append(
+                (
+                    hazards_csv,
+                    "unexpected fields: "
+                    f"{reader.fieldnames!r}; "
+                    f"expected {expected_hazard_fields!r}",
+                )
+            )
+        else:
+            for line_no, row in enumerate(reader, start=2):
+                hazard_id = (row.get("hazard_id") or "").strip()
+                hazard = (row.get("hazard") or "").strip()
+                entity_type = (row.get("entity_type") or "").strip()
+                notes = (row.get("notes") or "").strip()
+
+                for field, value in (
+                    ("hazard_id", hazard_id),
+                    ("hazard", hazard),
+                    ("entity_type", entity_type),
+                    ("notes", notes),
+                ):
+                    if not value:
+                        hazard_registry_problems.append(
+                            (
+                                hazards_csv,
+                                f"line {line_no}: required field "
+                                f"{field!r} is empty",
+                            )
+                        )
+
+                if hazard_id and not hazard_id.startswith("HAZ-"):
+                    hazard_registry_problems.append(
+                        (
+                            hazards_csv,
+                            f"line {line_no}: hazard_id "
+                            f"{hazard_id!r} must start with 'HAZ-'",
+                        )
+                    )
+
+                if hazard_id in hazard_ids:
+                    hazard_registry_problems.append(
+                        (
+                            hazards_csv,
+                            f"line {line_no}: duplicate hazard_id "
+                            f"{hazard_id!r}",
+                        )
+                    )
+
+                if hazard in hazard_names:
+                    hazard_registry_problems.append(
+                        (
+                            hazards_csv,
+                            f"line {line_no}: duplicate hazard name "
+                            f"{hazard!r}",
+                        )
+                    )
+
+                if hazard_id:
+                    hazard_ids.add(hazard_id)
+
+                if hazard:
+                    hazard_names.add(hazard)
+
+if hazard_registry_problems:
+    print("Canonical hazard registry check: FAIL")
+    for cp, msg in hazard_registry_problems:
+        print(f"  {cp.relative_to(ROOT)} -> {msg}")
+    raise SystemExit(1)
+
+print(
+    "Canonical hazard registry check: PASS "
+    f"({len(hazard_ids)} hazards)"
+)
+
 # CSV URL validation for public research catalogs.
 csv_files = sorted((ROOT / "references").rglob("*.csv"))
 csv_urls_checked = 0
