@@ -602,6 +602,40 @@ else:
                             )
                         )
 
+# Require exactly one relationship for every structured evidence record.
+relationship_object_counts = {}
+
+if relationships_csv.exists():
+    with relationships_csv.open(newline="", encoding="utf-8") as f:
+        reader = csv.DictReader(f)
+
+        if reader.fieldnames == expected_relationship_fields:
+            for row in reader:
+                object_id = (row.get("object_id") or "").strip()
+                if object_id:
+                    relationship_object_counts[object_id] = (
+                        relationship_object_counts.get(object_id, 0) + 1
+                    )
+
+for evidence_id in sorted(evidence_records):
+    count = relationship_object_counts.get(evidence_id, 0)
+
+    if count == 0:
+        relationship_problems.append(
+            (
+                relationships_csv,
+                f"evidence record {evidence_id!r} has no relationship",
+            )
+        )
+    elif count > 1:
+        relationship_problems.append(
+            (
+                relationships_csv,
+                f"evidence record {evidence_id!r} has "
+                f"{count} relationships; expected exactly one",
+            )
+        )
+
 if relationship_problems:
     print("Evidence relationship graph check: FAIL")
     for cp, msg in relationship_problems:
