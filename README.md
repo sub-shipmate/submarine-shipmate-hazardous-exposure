@@ -2,6 +2,9 @@
 
 Historical research and private reconstruction tools for U.S. **submarine and submarine-tender shipmates**.
 
+<img width="1536" height="1024" alt="image" src="https://github.com/user-attachments/assets/331e42c8-52f8-4f1e-87d0-fdca6b63fb78" />  
+
+
 ## Start Here
 
 **Were you a U.S. submarine or submarine-tender shipmate?**
